@@ -1,0 +1,5 @@
+GECKO_DRV_PATH=/Users/babuneelam/Downloads/geckodriver
+FONTS_FOLDER=/Library/Fonts
+#GECKO_DRV_LOG_FILE=RunTimeInfo/geckodriver.log
+#OUTPUT_DIR=RunTimeInfo/output
+#IMAGE_STORE_PATH=RunTimeInfo/google_images

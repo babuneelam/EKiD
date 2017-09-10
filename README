@@ -1,0 +1,73 @@
+
+What is EKiD ?
+--------------
+EKiD stands for Easy Kid's Dictionary.
+The goal of this project is to provide resources that help ease the way a child
+improves his vocabulary over time.
+
+Directory Organization
+----------------------
+/EKiD/
+    README		- This File
+    ConfigControls/     - User Config controls
+    Sources             - Source Code. For sub-directory structure, see
+                          "Source Code Organization" below.
+    RunTimeInfo	        - Directory in which EKiD stores information
+                          during it's run time. Ex: 
+        output/             - workseet outputs,
+        google_images/      - images downloaded from internet
+    SampleOutputs/      - Contains sample outputs for a few types of user config
+    TBD                 - Roadmap items
+
+SETUP
+-----
+
+
+How to generate custom worksheets?
+----------------------------------
+1. Go to the directory where EKiD/Sources is downloaded
+2. Modify "GECKO_DRV_PATH" in ConfigControls/EnvCfg to the geckodriver 
+   executable location in your syatem.
+3. Add the requried words to EKid/ConfigControls/WordList
+4. Run "python Worksheet.py"
+5. Now the expected qorksheets are at RunTimeInfo/output/
+6. Advanced Settings: 
+   a. Change Algo types in ConfigControls/AlgoCfg as necessary.
+   b. Change Algo types in ConfigControls/FontCfg as necessary.
+   c. Change Algo types in ConfigControls/ImgCfg as necessary.
+
+Here is a sample exection flow:
+    Babus-MacBook-Pro:EKiD babuneelam$ pwd
+    /Users/babuneelam/EKiD
+    Babus-MacBook-Pro:EKiD babuneelam$ cat ConfigControls/WordList 
+    jam
+    bed
+    Babus-MacBook-Pro:EKiD babuneelam$ python Worksheet.py 
+    Babus-MacBook-Pro:EKiD babuneelam$ ls RunTimeInfo/output/
+    ws1_1.png	ws2_1.png	ws3_1.png
+    Babus-MacBook-Pro:EKiD babuneelam$ 
+
+Source Code Overview
+--------------------
+EKiD/Sources/
+    Worksheet.py   - This is the main script
+    DrawWord.py	   - This script primarily draws words & images
+    GetPic.py	   - This script downloads images for the words if not already.
+    CCP/           - This script processes User Config Controls 
+    MyCustomFonts/ - This directory contains a third party custom dash font 
+
+TBD
+----
+    - When images are downloaded from images.google.com, a firefox browser
+      opens in the foreground. This need to done in the background instead.
+    - When "set" Algo is configured, max_blank_chars to be auto-configured
+      internally
+    - Spacing between letters in a word to be adaptive (currently fixed).
+    - Image Manager: to help choose more suitable image among the downloaded
+      images. To choose different images when a set is generated. To let users
+      customize the images. To use this information to rate image suitability.
+    - Support multi-word worksheets. Say words like "Dog Cage"
+    - Gracefully skip processing of words that exceed maximum allowed length.
+    - Proprietary code for GetPic.py so the third party license can be avoided.
+    - Proprietary custom font so customizations can be done as needed
+
