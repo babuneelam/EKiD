@@ -7,7 +7,7 @@ improves his vocabulary over time.
 
 Directory Organization
 ----------------------
-/EKiD/
+EKiD/
     README		- This File
     ConfigControls/     - User Config controls
     Sources             - Source Code. For sub-directory structure, see
