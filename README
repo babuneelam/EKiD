@@ -98,7 +98,6 @@ EKiD/Sources/
 
 TBD
 ----
-    - Skip processing empty lines in ConfigControls/WordList file
     - Add Tracing capabiilties
     - When images are downloaded from images.google.com, a firefox browser
       opens in the foreground. This need to done in the background instead.
