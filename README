@@ -98,6 +98,7 @@ EKiD/Sources/
 
 TBD
 ----
+    - Skip processing empty lines in ConfigControls/WordList file
     - Add Tracing capabiilties
     - When images are downloaded from images.google.com, a firefox browser
       opens in the foreground. This need to done in the background instead.
@@ -108,6 +109,7 @@ TBD
       images. To choose different images when a set is generated. To let users
       customize the images. To use this information to rate image suitability.
     - Support multi-word worksheets. Say words like "Dog Cage"
+    - Test the input words (from ConfigControls/WordList) against a valid dictionary
     - Gracefully skip processing of words that exceed maximum allowed length.
     - Proprietary code for GetPic.py so the third party license can be avoided.
     - Proprietary custom font so customizations can be done as needed
