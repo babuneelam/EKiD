@@ -10,6 +10,8 @@ However, the current implementation is far from this goal. It can take words
 as user input and generate various tracing worksheets. For each input word, 
 the first image from images.google.com is downloaded and used in the worksheet.
 
+Happy Tracing :)
+
 Directory Organization
 ----------------------
 EKiD/
