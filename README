@@ -4,6 +4,9 @@ What is EKiD ?
 EKiD stands for Easy Kid's Dictionary.
 The goal of this project is to provide resources that help ease the way a child
 improves his vocabulary over time.
+However, the current implementation is far from this goal. It can take words 
+as user input and generate various tracing worksheets. For each input word, 
+the first image from images.google.com is downloaded and used in the worksheet.
 
 Directory Organization
 ----------------------
