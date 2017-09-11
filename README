@@ -98,6 +98,7 @@ EKiD/Sources/
 
 TBD
 ----
+    - Add Tracing capabiilties
     - When images are downloaded from images.google.com, a firefox browser
       opens in the foreground. This need to done in the background instead.
     - When "set" Algo is configured, max_blank_chars to be auto-configured
