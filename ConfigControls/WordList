@@ -1,10 +1,13 @@
-backpack
-train
-truck
-apple
-pillow
-clock
-foot
-car
-lion
-tree
+Blue, 1, Blue color
+Green, 1, Green color
+Red, 2, Red color
+Yellow, 3, Yellow color
+Pink, 10, Pink color
+Purple, 1, Purple color
+Orange, 5, Orange color
+Black, 5, Black color
+Gray, 12, Gray color
+White, 23, White color
+Brown, 3, Brown color
+
+
