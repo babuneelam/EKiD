@@ -17,11 +17,12 @@ from ImgCfg import ImgCfg
 
 #os.environ["PATH"] += os.pathsep + os.getcwd()
 
-def download_from_google(word):
+def download_from_google(word, search_str, img_download_index):
         ext_list={'png', 'jpg', 'gif', 'jpeg'}
         for ext in ext_list:
             image_file = EnvCfg.ImageStoreDir + ImgCfg.License+'/'+ \
-                         ImgCfg.ImageType + '/' +word+'/0.'+ext
+                         ImgCfg.ImageType + '/' +word+'/'+ \
+                         str(img_download_index)+'.'+ext
             if os.path.isfile(image_file):
                 #print "image file exists already"
 	        return
@@ -39,25 +40,25 @@ def download_from_google(word):
 
         if (ImgCfg.License == 'AnyLicense' and ImgCfg.ImageType == 'AllImages'):
             # All Images, Any License, safe search on
-            url = "https://www.google.com/search?tbm=isch&source=hp&biw=1164&bih=635&q="+word+"&oq="+word+"&gs_l=img.3..0l10.46946.47724.0.48035.7.7.0.0.0.0.132.472.2j3.5.0....0...1.1.64.img..2.5.472.0..35i39k1.lGhvJnRhXEM"
+            url = "https://www.google.com/search?tbm=isch&source=hp&biw=1164&bih=635&q="+search_str+"&oq="+search_str+"&gs_l=img.3..0l10.46946.47724.0.48035.7.7.0.0.0.0.132.472.2j3.5.0....0...1.1.64.img..2.5.472.0..35i39k1.lGhvJnRhXEM"
 
         elif (ImgCfg.License == 'FreeLicense' and ImgCfg.ImageType == 'AllImages'):
             # Any Images, Free License, safe search on
-            url = "https://www.google.com/search?q="+word+"&safe=active&tbm=isch&source=lnt&tbs=sur:fc&sa=X&ved=0ahUKEwi_0em0t_bVAhXEhFQKHf_rD_oQpwUIHw&biw=1164&bih=635&dpr=2"
+            url = "https://www.google.com/search?q="+search_str+"&safe=active&tbm=isch&source=lnt&tbs=sur:fc&sa=X&ved=0ahUKEwi_0em0t_bVAhXEhFQKHf_rD_oQpwUIHw&biw=1164&bih=635&dpr=2"
         elif (ImgCfg.License == 'AnyLicense' and ImgCfg.ImageType == 'LineartImages'):
             # Line Art Images, Any License, safe search on
-            url = "https://www.google.com/search?q="+word+"&safe=active&tbm=isch&source=lnt&tbs=itp:lineart&sa=X&ved=0ahUKEwi_0em0t_bVAhXEhFQKHf_rD_oQpwUIHw&biw=1164&bih=635&dpr=2"
+            url = "https://www.google.com/search?q="+search_str+"&safe=active&tbm=isch&source=lnt&tbs=itp:lineart&sa=X&ved=0ahUKEwi_0em0t_bVAhXEhFQKHf_rD_oQpwUIHw&biw=1164&bih=635&dpr=2"
         elif (ImgCfg.License == 'FreeLicense' and ImgCfg.ImageType == 'LineartImages'):
             # Line Art Images, Free License, safe search on
-            url = "https://www.google.com/search?q="+word+"&safe=active&tbs=itp:lineart,sur:fc&tbm=isch&source=lnt&sa=X&ved=0ahUKEwjr3s7OuPbVAhVByVQKHUhbAmUQpwUIHw&biw=1164&bih=635&dpr=2"
+            url = "https://www.google.com/search?q="+search_str+"&safe=active&tbs=itp:lineart,sur:fc&tbm=isch&source=lnt&sa=X&ved=0ahUKEwjr3s7OuPbVAhVByVQKHUhbAmUQpwUIHw&biw=1164&bih=635&dpr=2"
 
-	#url = "https://www.google.com/search?q="+word+"&source=lnms&tbm=isch"
+	#url = "https://www.google.com/search?q="+search_str+"&source=lnms&tbm=isch"
 
         # Advance search, linear art filter
-        #url = "https://www.google.com/search?as_st=y&tbm=isch&as_q=&as_epq="+word+"&as_oq=&as_eq=&cr=&as_sitesearch=&safe=images&tbs=itp:lineart,sur:f"
+        #url = "https://www.google.com/search?as_st=y&tbm=isch&as_q=&as_epq="+search_str+"&as_oq=&as_eq=&cr=&as_sitesearch=&safe=images&tbs=itp:lineart,sur:f"
 
         # All Images, Any License
-        #url = "https://www.google.com/search?tbm=isch&source=hp&biw=1164&bih=635&q="+word+"&oq="+word+"&gs_l=img.3..0l10.46946.47724.0.48035.7.7.0.0.0.0.132.472.2j3.5.0....0...1.1.64.img..2.5.472.0..35i39k1.lGhvJnRhXEM"
+        #url = "https://www.google.com/search?tbm=isch&source=hp&biw=1164&bih=635&q="+search_str+"&oq="+search_str+"&gs_l=img.3..0l10.46946.47724.0.48035.7.7.0.0.0.0.132.472.2j3.5.0....0...1.1.64.img..2.5.472.0..35i39k1.lGhvJnRhXEM"
 
 
 	driver = webdriver.Firefox(executable_path=EnvCfg.GeckoDrvPath, log_path=EnvCfg.GeckoDrvLogFile)
@@ -87,8 +88,12 @@ def download_from_google(word):
 	imges = driver.find_elements_by_xpath('//div[contains(@class,"rg_meta")]')
 	#print "Total images:", len(imges), "\n"
 	for img in imges:
+                if img_count != img_download_index:
+		        img_count += 1
+                        continue
 		img_count += 1
 		img_url = json.loads(img.get_attribute('innerHTML'))["ou"]
+                #print img_url
 		img_type = json.loads(img.get_attribute('innerHTML'))["ity"]
 		#print "Downloading image", img_count, ": ", img_url
 		try:
@@ -96,14 +101,19 @@ def download_from_google(word):
 				img_type = "jpg"
 			req = urllib2.Request(img_url, headers=headers)
 			raw_img = urllib2.urlopen(req).read()
-			f = open(download_path+word.replace(" ", "_")+"/"+str(downloaded_img_count)+"."+img_type, "wb")
+                        #print word
+                        #print img_count-1
+			f = open(download_path+word.replace(" ", "_")+"/"+str(img_count-1)+"."+img_type, "wb")
 			f.write(raw_img)
 			f.close
+                        img_url_file=download_path+word.replace(" ", "_")+"/"+str(img_count-1)+"_url.txt"
+                        with open(img_url_file, 'a') as file_object:
+                            file_object.write(img_url)
 			downloaded_img_count += 1
 		except Exception as e:
 			print "Download failed:", e
-		finally:
-			print
+		#finally:
+			#print
 		if downloaded_img_count >= num_requested:
 			break
 
