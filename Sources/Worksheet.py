@@ -1,5 +1,6 @@
 from PIL import Image, ImageDraw, ImageFont
 import os
+import re
 import sys
 import DrawWord
 import shutil
@@ -31,7 +32,7 @@ else:
 
 # Read words from input file & create instances for each 
 word_file = open(cfgDir+'WordList')
-words = word_file.readlines()
+word_lines = word_file.readlines()
 
 if AlgoCfg.AlgoType == 'Set':
     algo_list={'Full', 'Empty', 'Random'}
@@ -44,10 +45,19 @@ if AlgoCfg.AlgoType == 'Set':
 
         #print words in the worksheet
         word_num=1
-        for word in words:
-            word = word.rstrip()
-            if word != '':
-                DrawWord.insert_word(img, word, word_num)
+        for word_line in word_lines:
+            word_line = word_line.rstrip()
+            words = re.split(",\s*", word_line)
+            if (len(words) >1):
+                img_download_index = int(words[1]) -1
+            else:
+                img_download_index = 0
+            if (len(words) >2):
+                search_str = words[2]
+            else:
+                search_str = words[0]
+            if words[0] != '':
+                DrawWord.insert_word(img, words[0].lower(), search_str, img_download_index, word_num)
                 word_num += 1
             if word_num == 6:
                 #Save image into a disk file
@@ -68,10 +78,19 @@ else:
 
     #print words in the worksheet
     word_num=1
-    for word in words:
-        word = word.rstrip()
-        if word != '':
-            DrawWord.insert_word(img, word, word_num)
+    for word_line in word_lines:
+        word_line = word_line.rstrip()
+        words = re.split(",\s*", word_line)
+        if (len(words) >1):
+            img_download_index = int(words[1]) -1
+        else:
+            img_download_index = 0
+        if (len(words) >2):
+            search_str = words[2]
+        else:
+            search_str = words[0]
+        if words[0] != '':
+            DrawWord.insert_word(img, words[0].lower(), search_str, img_download_index, word_num)
             word_num += 1
         if word_num == 6:
             #Save image into a disk file
