@@ -59,13 +59,13 @@ if AlgoCfg.AlgoType == 'Set':
             if words[0] != '':
                 DrawWord.insert_word(img, words[0].lower(), search_str, img_download_index, word_num)
                 word_num += 1
-            if word_num == 6:
-                #Save image into a disk file
-                img.save(outDir+'/ws'+str(fno)+'_'+str(sub)+'.png')
-                #Create Image file
-                img = Image.new('RGBA', (2480, 3508), 'white')
-                word_num=1
-                sub += 1
+                if word_num == 6:
+                    #Save image into a disk file
+                    img.save(outDir+'/ws'+str(fno)+'_'+str(sub)+'.png')
+                    #Create Image file
+                    img = Image.new('RGBA', (2480, 3508), 'white')
+                    word_num=1
+                    sub += 1
     
         if word_num >= 2 and word_num < 6 :
             #Save image into a disk file
@@ -92,13 +92,13 @@ else:
         if words[0] != '':
             DrawWord.insert_word(img, words[0].lower(), search_str, img_download_index, word_num)
             word_num += 1
-        if word_num == 6:
-            #Save image into a disk file
-            img.save(outDir+'ws'+str(fno)+'.png')
-            #Create Image file
-            img = Image.new('RGBA', (2480, 3508), 'white')
-            word_num=1
-            fno += 1
+            if word_num == 6:
+                #Save image into a disk file
+                img.save(outDir+'ws'+str(fno)+'.png')
+                #Create Image file
+                img = Image.new('RGBA', (2480, 3508), 'white')
+                word_num=1
+                fno += 1
     if word_num >= 2 and word_num < 6 :
         #Save image into a disk file
         img.save(outDir+'ws'+str(fno)+'.png')

@@ -1,4 +1,7 @@
-#Allowed Grade Levels: PS1, PS2, PS3, PK1, PK2, PK3, K1, K2, K3
-#GradeLevel=PK3
+########################### HELP  ################################
+# Allowed Grade Levels: PS1, PS2, PS3, PK1, PK2, PK3, K1, K2, K3 #
+# As grade progresses, the size of the characters reduce         #
+##################################################################
 GradeLevel=K1
+#GradeLevel=PK3
 

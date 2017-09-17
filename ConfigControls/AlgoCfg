@@ -1,3 +1,11 @@
+####################### HELP###########################
+# full: prints the worksheet letters in full.         #
+# empty: doesn't print any letters in the worksheet   #
+# random: randomly inserts blank characters in word   #
+# max_blank_chars: max blank characters when "random" #
+#                  algo is chosen                     #
+# specified: not implemented yet                      #
+#######################################################
 #full
 #empty
 #specified

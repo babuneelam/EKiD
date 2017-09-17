@@ -2,12 +2,19 @@
 What is EKiD ?
 --------------
 EKiD stands for Easy Kid's Dictionary.
+
 The goal of this project is to provide resources that help ease the way a child
 improves his vocabulary over time.
 
+However, the current implementation is far from this goal. It can take words 
+as user input and generate various tracing worksheets. For each input word, 
+the first image from images.google.com is downloaded and used in the worksheet.
+
+Happy Tracing :)
+
 Directory Organization
 ----------------------
-/EKiD/
+EKiD/
     README		- This File
     ConfigControls/     - User Config controls
     Sources             - Source Code. For sub-directory structure, see
@@ -19,19 +26,52 @@ Directory Organization
     SampleOutputs/      - Contains sample outputs for a few types of user config
     TBD                 - Roadmap items
 
-SETUP
------
+Setup - Ubuntu 16.04.3
+----------------------
+
+1. Install python, if not already installed. Ubuntu had python installed
+   by default.
+
+2. Install git:
+       sudo apt install git
+
+3. Clone this githib repository to your local machine:
+       git clone https://github.com/babuneelam/EKiD.git
+
+4. Install python-pip:
+       sudo apt install python-pip
+       pip install --upgrade pip
+
+5. Install PIL
+       sudo pip install pillow
+
+6. Install Selenium:
+       sudo pip install selenium
+
+7. Download latest geckdriver executable from
+       https://github.com/mozilla/geckodriver/releases
+   and place it a directory. say /home/babu/bin/
+
+8. Install Microsoft word fonts:
+       sudo apt-get install msttcorefonts
+       sudo apt-get install ttf-mscorefonts-installer
+       sudo fc-cache
+       fc-match Arial
+
+9. Modify FONTS_FOLDER in EKiD/ConfigControls/EnvCfg
+   to /usr/share/fonts/truetype/msttcorefonts/
+
+10. Modify GECKO_DRV_PATH in EKiD/ConfigControls/EnvCfg
+    to /home/babu/bin/geckodriver
 
 
 How to generate custom worksheets?
 ----------------------------------
-1. Go to the directory where EKiD/Sources is downloaded
-2. Modify "GECKO_DRV_PATH" in ConfigControls/EnvCfg to the geckodriver 
-   executable location in your syatem.
-3. Add the requried words to EKid/ConfigControls/WordList
-4. Run "python Worksheet.py"
-5. Now the expected qorksheets are at RunTimeInfo/output/
-6. Advanced Settings: 
+1. Go to the directory EKiD/Sources/
+2. Add the requried words to EKid/ConfigControls/WordList
+3. Run "python Worksheet.py"
+4. Now the expected qorksheets are at RunTimeInfo/output/
+5. Advanced Settings: 
    a. Change Algo types in ConfigControls/AlgoCfg as necessary.
    b. Change Algo types in ConfigControls/FontCfg as necessary.
    c. Change Algo types in ConfigControls/ImgCfg as necessary.
@@ -58,6 +98,7 @@ EKiD/Sources/
 
 TBD
 ----
+    - Add Tracing capabiilties
     - When images are downloaded from images.google.com, a firefox browser
       opens in the foreground. This need to done in the background instead.
     - When "set" Algo is configured, max_blank_chars to be auto-configured
@@ -67,6 +108,7 @@ TBD
       images. To choose different images when a set is generated. To let users
       customize the images. To use this information to rate image suitability.
     - Support multi-word worksheets. Say words like "Dog Cage"
+    - Test the input words (from ConfigControls/WordList) against a valid dictionary
     - Gracefully skip processing of words that exceed maximum allowed length.
     - Proprietary code for GetPic.py so the third party license can be avoided.
     - Proprietary custom font so customizations can be done as needed
