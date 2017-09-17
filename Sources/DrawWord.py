@@ -10,17 +10,28 @@ from ImgCfg import ImgCfg
 from AlgoCfg import AlgoCfg
 from FontCfg import FontCfg
 
-def insert_word(img, word, image_num):
+def insert_word(img, word, search_str, img_download_index, image_num):
     draw = ImageDraw.Draw(img)
 
-    GetPic.download_from_google(word)
+    GetPic.download_from_google(word, search_str, img_download_index)
 
     ext_list={'png', 'jpg', 'gif', 'jpeg'}
     for ext in ext_list:
         image_file=EnvCfg.ImageStoreDir + ImgCfg.License+'/'+ \
-                   ImgCfg.ImageType+'/'+ word+'/0.'+ext
+                   ImgCfg.ImageType+'/'+ word+'/'+str(img_download_index)+'.'+ext
         if os.path.isfile(image_file):
             break
+    url_file=EnvCfg.ImageStoreDir + ImgCfg.License+'/'+ \
+               ImgCfg.ImageType+'/'+ word+'/'+str(img_download_index)+'_url.txt'
+    if os.path.isfile(url_file):
+        url_f = open(url_file, "r")
+        url = url_f.read()
+        url_f.close()
+        img_sources_file=EnvCfg.OutputDir+ '/image_sources.txt'
+        with open(img_sources_file, 'a') as file_object:
+            file_object.write(url)
+            file_object.write("\n")
+
 
     if not ext:
         print "Couldn't get image"
